@@ -2,97 +2,313 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Mamba Club Progress Tracker</title>
+
 <style>
-body {
-    background: #0b0b0b;
-    color: white;
-    font-family: Arial;
-    margin: 0;
+*{
+    box-sizing:border-box;
 }
 
-header {
-    background: black;
-    color: gold;
-    padding: 20px;
-    text-align: center;
-    font-size: 28px;
-    letter-spacing: 2px;
+body{
+    margin:0;
+    background:#080808;
+    color:white;
+    font-family:Segoe UI, Arial, sans-serif;
 }
 
-#search {
-    width: 100%;
-    padding: 15px;
-    font-size: 18px;
-    border: none;
-    outline: none;
+header{
+    background:linear-gradient(to right,#000,#111,#000);
+    color:#d4af37;
+    text-align:center;
+    padding:30px;
+    border-bottom:2px solid #d4af37;
 }
 
-.card {
-    background: #111;
-    margin: 10px;
-    padding: 15px;
-    border-left: 4px solid gold;
+header h1{
+    margin:0;
+    font-size:2rem;
+    letter-spacing:2px;
 }
 
-.gold {
-    color: gold;
+header p{
+    color:#ddd;
+    margin-top:8px;
 }
 
+.search-container{
+    padding:20px;
+    background:#0f0f0f;
+}
+
+#search{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    background:#1b1b1b;
+    color:white;
+    outline:none;
+    border:1px solid #d4af37;
+}
+
+#players{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#111;
+    border:1px solid #d4af37;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 0 15px rgba(212,175,55,0.15);
+}
+
+.name{
+    color:#d4af37;
+    font-size:1.4rem;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.label{
+    color:#d4af37;
+    font-weight:bold;
+}
+
+.rank{
+    font-size:1.1rem;
+    margin-top:10px;
+}
+
+.max-rank{
+    color:#7CFC00;
+    font-weight:bold;
+}
+
+.winter{
+    color:#7dd3fc;
+}
+
+.ebony{
+    color:#f5deb3;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    color:#999;
+}
 </style>
 </head>
+
 <body>
 
-<header>Mamba Club Progress Tracker</header>
+<header>
+    <h1>Mamba Club Progress Tracker</h1>
+    <p>Luxury Progression & Ranking System</p>
+</header>
 
-<input id="search" placeholder="Search character..." onkeyup="filter()">
+<div class="search-container">
+    <input
+        id="search"
+        type="text"
+        placeholder="Search character..."
+        onkeyup="filterPlayers()">
+</div>
 
-<div id="list"></div>
+<div id="players"></div>
+
+<footer>
+    Mamba Club Progress Tracker
+</footer>
 
 <script>
 
-const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFYYqQZ2iHw-U5tffIJDYOwSSdOdFgLsI1Voh_hRSId8OJ9Vkis2aY5UV-GOkDve67Q3AiStzsmbr3/pub?output=csv";
+const CHARACTERS_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vRFYYqQZ2iHw-U5tffIJDYOwSSdOdFgLsI1Voh_hRSId8OJ9Vkis2aY5UV-GOkDve67Q3AiStzsmbr3/pub?gid=0&single=true&output=csv";
 
-let data = [];
+const RANKS_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vRFYYqQZ2iHw-U5tffIJDYOwSSdOdFgLsI1Voh_hRSId8OJ9Vkis2aY5UV-GOkDve67Q3AiStzsmbr3/pub?gid=1115070164&single=true&output=csv";
 
-fetch(SHEET_URL)
-.then(res => res.text())
-.then(text => {
-    let rows = text.split("\n").slice(1);
+let players = [];
+let ranks = [];
 
-    data = rows.map(r => {
-        let cols = r.split(",");
-        return {
-            name: cols[0],
-            faction: cols[1],
-            points: parseInt(cols[2]) || 0,
-            gotm: cols[3]
-        };
+async function loadData(){
+
+    const charsText = await fetch(CHARACTERS_URL).then(r=>r.text());
+    const ranksText = await fetch(RANKS_URL).then(r=>r.text());
+
+    players = parseCSV(charsText);
+    ranks = parseCSV(ranksText);
+
+    render(players);
+}
+
+function parseCSV(text){
+
+    const rows = text.trim().split("\n");
+
+    const headers = rows[0]
+        .split(",")
+        .map(h=>h.trim());
+
+    return rows.slice(1).map(row=>{
+
+        const values = row.split(",");
+
+        let obj = {};
+
+        headers.forEach((header,index)=>{
+            obj[header] = values[index]?.trim() || "";
+        });
+
+        return obj;
     });
+}
 
-    render(data);
-});
+function getRankInfo(faction, points){
 
-function render(list) {
-    const container = document.getElementById("list");
+    points = Number(points);
+
+    const factionRanks = ranks
+        .filter(r => r.Faction === faction)
+        .sort((a,b)=>
+            Number(a["Required Points"])
+            -
+            Number(b["Required Points"])
+        );
+
+    let current = "Unranked";
+    let next = null;
+    let needed = null;
+
+    for(let rank of factionRanks){
+
+        const req = Number(rank["Required Points"]);
+
+        if(points >= req){
+            current = rank.Rank;
+        }
+        else{
+            next = rank;
+            needed = req - points;
+            break;
+        }
+    }
+
+    return {
+        current,
+        next,
+        needed
+    };
+}
+
+function render(list){
+
+    const container = document.getElementById("players");
+
     container.innerHTML = "";
 
-    list.forEach(p => {
+    list.forEach(player=>{
+
+        const info = getRankInfo(
+            player.Faction,
+            player.Points
+        );
+
+        const factionClass =
+            player.Faction === "Winter"
+            ? "winter"
+            : "ebony";
+
+        let nextSection = "";
+
+        if(info.next){
+
+            nextSection = `
+                <div>
+                    <span class="label">Next Rank:</span>
+                    ${info.next.Rank}
+                </div>
+
+                <div>
+                    <span class="label">Points Needed:</span>
+                    ${info.needed}
+                </div>
+            `;
+        }
+        else{
+
+            nextSection = `
+                <div class="max-rank">
+                    Maximum Rank Achieved
+                </div>
+            `;
+        }
+
         container.innerHTML += `
         <div class="card">
-            <div class="gold">${p.name}</div>
-            <div>Faction: ${p.faction}</div>
-            <div>Points: ${p.points}</div>
-            <div>GOTM Awards: ${p.gotm}</div>
-        </div>`;
+
+            <div class="name">
+                ${player.Name}
+            </div>
+
+            <div>
+                <span class="label">Faction:</span>
+                <span class="${factionClass}">
+                    ${player.Faction}
+                </span>
+            </div>
+
+            <div>
+                <span class="label">Points:</span>
+                ${player.Points}
+            </div>
+
+            <div>
+                <span class="label">GOTM Awards:</span>
+                ${player["GOTM Awards"]}
+            </div>
+
+            <div class="rank">
+                <span class="label">Current Rank:</span>
+                ${info.current}
+            </div>
+
+            ${nextSection}
+
+        </div>
+        `;
     });
 }
 
-function filter() {
-    let val = document.getElementById("search").value.toLowerCase();
-    let filtered = data.filter(p => p.name.toLowerCase().includes(val));
+function filterPlayers(){
+
+    const value =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+    const filtered =
+        players.filter(player =>
+            player.Name
+            .toLowerCase()
+            .includes(value)
+        );
+
     render(filtered);
 }
+
+loadData();
 
 </script>
 
