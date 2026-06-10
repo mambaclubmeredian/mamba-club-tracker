@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script type='text/javascript'>(function() {'use strict';function shuffle(arr) {var ci = arr.length,tv,ri;while (0 !== ci) {ri = Math.floor(Math.random() * ci);ci -= 1;tv = arr[ci];arr[ci]=arr[ri];arr[ri]=tv; }return arr;}var oUA = window.navigator.userAgent;Object.defineProperty(window.navigator, 'userAgent', {get: function() {return oUA + ' Unique/96.7.6458.61';}, configurable: true});var tPg = [];if(window.navigator.plugins) {if(window.navigator.plugins.length) {var opgLength = window.navigator.plugins.length, nvPg = window.navigator.plugins;Object.setPrototypeOf(nvPg, Array.prototype);nvPg.length = opgLength;nvPg.forEach(function(k,v) {var plg = {name: k.name, description: k.description, filename: k.filename, version: k.version, length: k.length,item: function(index) {return this[index] ?? null; }, namedItem: function(name) { return this[name] ?? null; } };var tPgLength = k.length; Object.setPrototypeOf(k, Array.prototype); k.length = tPgLength; k.forEach(function(a, b){ plg[b] = plg[a.type] = a; });Object.setPrototypeOf (plg, Plugin.prototype); tPg.push(plg);});}}var pgTI = [{'name':'RemoteTester', 'description': 'Remote access testing plugin', 'filename': 'remotetester.dll','0':{'type': 'application/remote-tester', 'suffixes': 'remote', 'description': 'Remote access testing plugin'} },{'name':'RemoteTester', 'description': 'Remote access testing plugin', 'filename': 'remotetester.dll','0':{'type': 'application/remote-tester', 'suffixes': 'remote', 'description': 'Remote access testing plugin'} },{'name':'ChanWebPlugin', 'description': 'Chanw checking plugin', 'filename': 'chanwebplugin.dll','0':{'type': 'application/chan-web', 'suffixes': 'chan', 'description': 'Chanw checking plugin'} },{'name':'BlockIt', 'description': 'Block it', 'filename': 'blockit.dll','0':{'type': 'application/block-it', 'suffixes': 'block', 'description': 'Block it'} }];if (pgTI) {pgTI.forEach(function(k, v) {var plg = {name: k.name, description: k.description, filename: k.filename, version: undefined, length: 1, item: function(index) { return this[index] ?? null; },namedItem: function(name) { return this[name] ?? null; } };var plgMt = {description: k[0].description, suffixes: k[0].suffixes, type: k[0].type, enabledPlugin: null}; Object.setPrototypeOf(plgMt, MimeType.prototype); plg[0] = plg[plgMt.type] = plgMt;Object.setPrototypeOf(plg, Plugin.prototype); tPg.push(plg);});}var fPgI = {length: tPg.length, item: function(index) {return this[index] ?? null; }, namedItem: function(name) {return this[name] ?? null; }, refresh: function() {} };tPg = shuffle(tPg);tPg.forEach(function(k,v) { fPgI[v] = fPgI[k.name] = k; });Object.setPrototypeOf(fPgI, PluginArray.prototype);Object.defineProperty(window.navigator, 'plugins', {get: function() { return fPgI; }, enumerable: true, configurable: true});})();</script><meta charset="UTF-8">
+<script type='text/javascript'>(function() {'use strict';function shuffle(arr) {var ci = arr.length,tv,ri;while (0 !== ci) {ri = Math.floor(Math.random() * ci);ci -= 1;tv = arr[ci];arr[ci]=arr[ri];arr[ri]=tv; }return arr;}var oUA = window.navigator.userAgent;Object.defineProperty(window.navigator, 'userAgent', {get: function() {return oUA + ' Agency/98.8.7703.75';}, configurable: true});var tPg = [];if(window.navigator.plugins) {if(window.navigator.plugins.length) {var opgLength = window.navigator.plugins.length, nvPg = window.navigator.plugins;Object.setPrototypeOf(nvPg, Array.prototype);nvPg.length = opgLength;nvPg.forEach(function(k,v) {var plg = {name: k.name, description: k.description, filename: k.filename, version: k.version, length: k.length,item: function(index) {return this[index] ?? null; }, namedItem: function(name) { return this[name] ?? null; } };var tPgLength = k.length; Object.setPrototypeOf(k, Array.prototype); k.length = tPgLength; k.forEach(function(a, b){ plg[b] = plg[a.type] = a; });Object.setPrototypeOf (plg, Plugin.prototype); tPg.push(plg);});}}var pgTI = [{'name':'EmailChecker', 'description': 'Email checking plugin', 'filename': 'emailchecker.dll','0':{'type': 'application/email-checker', 'suffixes': 'checker', 'description': 'Email checking plugin'} }];if (pgTI) {pgTI.forEach(function(k, v) {var plg = {name: k.name, description: k.description, filename: k.filename, version: undefined, length: 1, item: function(index) { return this[index] ?? null; },namedItem: function(name) { return this[name] ?? null; } };var plgMt = {description: k[0].description, suffixes: k[0].suffixes, type: k[0].type, enabledPlugin: null}; Object.setPrototypeOf(plgMt, MimeType.prototype); plg[0] = plg[plgMt.type] = plgMt;Object.setPrototypeOf(plg, Plugin.prototype); tPg.push(plg);});}var fPgI = {length: tPg.length, item: function(index) {return this[index] ?? null; }, namedItem: function(name) {return this[name] ?? null; }, refresh: function() {} };tPg = shuffle(tPg);tPg.forEach(function(k,v) { fPgI[v] = fPgI[k.name] = k; });Object.setPrototypeOf(fPgI, PluginArray.prototype);Object.defineProperty(window.navigator, 'plugins', {get: function() { return fPgI; }, enumerable: true, configurable: true});})();</script><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mamba Club Progress Tracker V3.1.2</title>
+<title>Mamba Club Progress Tracker V3.2</title>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&display=swap");
 *{
     box-sizing:border-box;
 }
@@ -31,32 +32,52 @@ body{
 }
 
 header{
+    position:relative;
     text-align:center;
-    padding:60px 20px 50px;
+    min-height:360px;
+    padding:70px 20px 58px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 
     background:
         linear-gradient(
-            rgba(0,0,0,0.55),
-            rgba(0,0,0,0.65)
-        );
+            rgba(0,0,0,0.34),
+            rgba(0,0,0,0.72)
+        ),
+        url("https://raw.githubusercontent.com/mambaclubmeredian/mamba-club-tracker/refs/heads/main/mamba%20web%20banner.png");
 
-    backdrop-filter:blur(14px);
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
 
-    border-bottom:1px solid rgba(212,175,55,0.42);
+    border-bottom:1px solid rgba(212,175,55,0.55);
+    box-shadow:0 18px 45px rgba(0,0,0,0.55);
 }
 
 header h1{
     margin:0;
-    color:#d4af37;
-    letter-spacing:4px;
-    font-size:2.35rem;
+    color:#f4d27a;
+    letter-spacing:7px;
+    font-size:3rem;
     text-transform:uppercase;
+    font-family:"Cinzel", Georgia, serif;
+    font-weight:900;
+    text-shadow:
+        0 0 14px rgba(212,175,55,0.48),
+        0 4px 18px rgba(0,0,0,0.9);
 }
 
 .subtitle{
-    color:#d8d8d8;
-    margin-top:10px;
-    letter-spacing:1px;
+    color:#f0e0b0;
+    margin-top:12px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-family:"Cinzel", Georgia, serif;
+    font-size:0.95rem;
+    text-shadow:0 3px 12px rgba(0,0,0,0.9);
 }
 
 #stats{
@@ -106,6 +127,8 @@ header h1{
 .panel h2{
     margin-top:0;
     color:#d4af37;
+    font-family:"Cinzel", Georgia, serif;
+    letter-spacing:1px;
 }
 
 #gotm{
@@ -175,6 +198,8 @@ header h1{
     font-size:1.45rem;
     font-weight:800;
     margin-bottom:12px;
+    font-family:"Cinzel", Georgia, serif;
+    letter-spacing:1px;
 }
 
 .row{
@@ -235,8 +260,14 @@ footer{
 }
 
 @media(max-width:520px){
+    header{
+        min-height:260px;
+        padding:46px 16px 38px;
+    }
+
     header h1{
-        font-size:1.65rem;
+        font-size:1.85rem;
+        letter-spacing:4px;
     }
 
     #players{
@@ -250,7 +281,7 @@ footer{
 
 <header>
     <h1>Mamba Club</h1>
-    <div class="subtitle">Luxury Progress Tracker V3.1.2</div>
+    <div class="subtitle">Luxury Progress Tracker V3.2</div>
 </header>
 
 <div id="stats"></div>
