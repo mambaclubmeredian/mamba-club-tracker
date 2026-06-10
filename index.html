@@ -3,46 +3,237 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mamba Club Progress Tracker V3.1</title>
+<title>Mamba Club Progress Tracker V3.1.1</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#050505,#111);color:#fff}
-header{text-align:center;padding:40px 20px;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border-bottom:1px solid rgba(212,175,55,.4)}
-h1{margin:0;color:#d4af37;letter-spacing:3px}
-.subtitle{color:#ccc}
-#stats{max-width:1200px;margin:20px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px}
-.stat-card,.panel,.card{background:rgba(255,255,255,.05);backdrop-filter:blur(12px);border:1px solid rgba(212,175,55,.35);border-radius:16px;box-shadow:0 8px 25px rgba(0,0,0,.35)}
-.stat-card{padding:15px;text-align:center}
-.stat-number{font-size:2rem;font-weight:bold;color:#d4af37}
-.panel{max-width:1200px;margin:20px auto;padding:20px}
-.search-container{max-width:1200px;margin:auto;padding:0 20px 20px}
-#search{width:100%;padding:15px;border-radius:12px;border:1px solid #d4af37;background:#111;color:white}
-#players{max-width:1200px;margin:auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
-.card{padding:20px}
-.name{font-size:1.4rem;font-weight:bold;color:#d4af37;margin-bottom:10px}
-.label{color:#d4af37;font-weight:bold}
-.winter{color:#8fd8ff}.ebony{color:#f0d7a1}
-.progress-bar{height:12px;background:#222;border-radius:999px;overflow:hidden;margin-top:8px}
-.progress-fill{height:100%;background:linear-gradient(90deg,#d4af37,#ffe08a)}
-.max-rank{color:#7CFC00;font-weight:bold;margin-top:10px}
-footer{text-align:center;padding:20px;color:#888}
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Segoe UI, Arial, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(212,175,55,0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(255,255,255,0.07), transparent 22%),
+        linear-gradient(180deg,#050505,#101010 55%,#050505);
+    color:white;
+    min-height:100vh;
+}
+
+header{
+    text-align:center;
+    padding:44px 20px 36px;
+    background:rgba(0,0,0,0.42);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(212,175,55,0.42);
+}
+
+header h1{
+    margin:0;
+    color:#d4af37;
+    letter-spacing:4px;
+    font-size:2.35rem;
+    text-transform:uppercase;
+}
+
+.subtitle{
+    color:#d8d8d8;
+    margin-top:10px;
+    letter-spacing:1px;
+}
+
+#stats{
+    max-width:1200px;
+    margin:24px auto;
+    padding:0 20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:16px;
+}
+
+.stat-card,
+.panel,
+.card{
+    background:rgba(255,255,255,0.055);
+    backdrop-filter:blur(14px);
+    border:1px solid rgba(212,175,55,0.35);
+    border-radius:18px;
+    box-shadow:0 10px 32px rgba(0,0,0,0.38);
+}
+
+.stat-card{
+    padding:18px;
+    text-align:center;
+}
+
+.stat-title{
+    color:#ddd;
+    text-transform:uppercase;
+    font-size:0.78rem;
+    letter-spacing:1.5px;
+}
+
+.stat-number{
+    color:#d4af37;
+    font-size:2.05rem;
+    font-weight:800;
+    margin-top:6px;
+}
+
+.panel{
+    max-width:1200px;
+    margin:22px auto;
+    padding:22px;
+}
+
+.panel h2{
+    margin-top:0;
+    color:#d4af37;
+}
+
+#gotm{
+    line-height:1.8;
+}
+
+.search-container{
+    max-width:1200px;
+    margin:auto;
+    padding:0 20px 20px;
+}
+
+#search{
+    width:100%;
+    padding:16px;
+    border-radius:14px;
+    border:1px solid rgba(212,175,55,0.8);
+    background:rgba(15,15,15,0.9);
+    color:white;
+    outline:none;
+    font-size:1rem;
+}
+
+#search:focus{
+    box-shadow:0 0 18px rgba(212,175,55,0.22);
+}
+
+#players{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    gap:20px;
+}
+
+.card{
+    padding:20px;
+    position:relative;
+    overflow:hidden;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:3px;
+    background:linear-gradient(90deg,transparent,#d4af37,transparent);
+}
+
+.name{
+    color:#d4af37;
+    font-size:1.45rem;
+    font-weight:800;
+    margin-bottom:12px;
+}
+
+.row{
+    margin:6px 0;
+}
+
+.label{
+    color:#d4af37;
+    font-weight:700;
+}
+
+.winter{
+    color:#8fd8ff;
+}
+
+.ebony{
+    color:#f0d7a1;
+}
+
+.rank{
+    margin-top:12px;
+    font-size:1.05rem;
+}
+
+.progress-block{
+    margin-top:14px;
+}
+
+.progress-bar{
+    height:13px;
+    background:#222;
+    border-radius:999px;
+    overflow:hidden;
+    margin:8px 0 4px;
+    border:1px solid rgba(255,255,255,0.06);
+}
+
+.progress-fill{
+    height:100%;
+    background:linear-gradient(90deg,#9b7a22,#d4af37,#ffe08a);
+}
+
+.max-rank{
+    color:#7CFC00;
+    font-weight:800;
+    margin-top:12px;
+}
+
+.small{
+    color:#cfcfcf;
+    font-size:0.88rem;
+}
+
+footer{
+    text-align:center;
+    padding:26px;
+    color:#888;
+}
+
+@media(max-width:520px){
+    header h1{
+        font-size:1.65rem;
+    }
+
+    #players{
+        grid-template-columns:1fr;
+    }
+}
 </style>
 </head>
+
 <body>
+
 <header>
-<h1>MAMBA CLUB</h1>
-<div class="subtitle">Luxury Progress Tracker V3.1</div>
+    <h1>Mamba Club</h1>
+    <div class="subtitle">Luxury Progress Tracker V3.1.1</div>
 </header>
 
 <div id="stats"></div>
 
 <div class="panel">
-<h2>🏆 Top GOTM Winners</h2>
-<div id="gotm"></div>
+    <h2>🏆 Top GOTM Winners</h2>
+    <div id="gotm">Loading...</div>
 </div>
 
 <div class="search-container">
-<input id="search" placeholder="Search character..." onkeyup="filterPlayers()">
+    <input id="search" placeholder="Search character..." onkeyup="filterPlayers()">
 </div>
 
 <div id="players"></div>
@@ -50,74 +241,259 @@ footer{text-align:center;padding:20px;color:#888}
 <footer>Mamba Club Progress Tracker</footer>
 
 <script>
-const CHARACTERS_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vRFYYqQZ2iHw-U5tffIJDYOwSSdOdFgLsI1Voh_hRSId8OJ9Vkis2aY5UV-GOkDve67Q3AiStzsmbr3/pub?gid=0&single=true&output=csv";
-const RANKS_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vRFYYqQZ2iHw-U5tffIJDYOwSSdOdFgLsI1Voh_hRSId8OJ9Vkis2aY5UV-GOkDve67Q3AiStzsmbr3/pub?gid=1115070164&single=true&output=csv";
-let players=[],ranks=[];
-const icons={Moissanite:"✨",Sapphire:"💙",Pearl:"🦪",Opal:"🔮",Diamond:"💎",Topaz:"🟨",Spinel:"⚫",Corundum:"🟥"};
+const CHARACTERS_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vRFYYqQZ2iHw-U5tffIJDYOwSSdOdFgLsI1Voh_hRSId8OJ9Vkis2aY5UV-GOkDve67Q3AiStzsmbr3/pub?gid=0&single=true&output=csv";
+
+const RANKS_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vRFYYqQZ2iHw-U5tffIJDYOwSSdOdFgLsI1Voh_hRSId8OJ9Vkis2aY5UV-GOkDve67Q3AiStzsmbr3/pub?gid=1115070164&single=true&output=csv";
+
+let players = [];
+let ranks = [];
+
+const icons = {
+    Moissanite:"✨",
+    Sapphire:"💙",
+    Pearl:"🦪",
+    Opal:"🔮",
+    Diamond:"💎",
+    Topaz:"🟨",
+    Spinel:"⚫",
+    Corundum:"🟥"
+};
 
 function parseCSV(text){
- const rows=text.trim().split("\\n");
- const headers=rows[0].split(",").map(h=>h.trim());
- return rows.slice(1).map(row=>{
-  const values=row.split(",");
-  const obj={};
-  headers.forEach((h,i)=>obj[h]=values[i]?.trim()||"");
-  return obj;
- });
+
+    const rows = text
+        .trim()
+        .split(/\r?\n/)
+        .filter(row => row.trim() !== "");
+
+    if(rows.length < 2){
+        return [];
+    }
+
+    const headers = rows[0]
+        .split(",")
+        .map(h => h.trim().replace(/^"|"$/g,""));
+
+    return rows.slice(1).map(row => {
+
+        const values = row
+            .split(",")
+            .map(v => v.trim().replace(/^"|"$/g,""));
+
+        const obj = {};
+
+        headers.forEach((header,index) => {
+            obj[header] = values[index] || "";
+        });
+
+        return obj;
+    });
 }
 
 async function loadData(){
- const chars=await fetch(CHARACTERS_URL).then(r=>r.text());
- const rankText=await fetch(RANKS_URL).then(r=>r.text());
- players=parseCSV(chars);
- ranks=parseCSV(rankText);
- players.sort((a,b)=>Number(b.Points)-Number(a.Points));
- buildStats(); buildGotm(); render(players);
+
+    try{
+        const charsText = await fetch(CHARACTERS_URL).then(r => r.text());
+        const ranksText = await fetch(RANKS_URL).then(r => r.text());
+
+        players = parseCSV(charsText);
+        ranks = parseCSV(ranksText);
+
+        players.sort((a,b) =>
+            Number(b.Points || 0) - Number(a.Points || 0)
+        );
+
+        buildStats();
+        buildGotm();
+        render(players);
+    }
+    catch(error){
+        document.getElementById("players").innerHTML =
+            "<div class='card'>Data could not be loaded. Check Google Sheets publishing settings.</div>";
+        console.error(error);
+    }
 }
 
 function buildStats(){
- document.getElementById("stats").innerHTML=`
- <div class="stat-card"><div>Members</div><div class="stat-number">${players.length}</div></div>
- <div class="stat-card"><div>Winter</div><div class="stat-number">${players.filter(p=>p.Faction==="Winter").length}</div></div>
- <div class="stat-card"><div>Ebony</div><div class="stat-number">${players.filter(p=>p.Faction==="Ebony").length}</div></div>
- <div class="stat-card"><div>Diamond</div><div class="stat-number">${players.filter(p=>Number(p.Points)>=100).length}</div></div>`;
+
+    const total = players.length;
+    const winter = players.filter(p => p.Faction === "Winter").length;
+    const ebony = players.filter(p => p.Faction === "Ebony").length;
+    const diamond = players.filter(p => Number(p.Points || 0) >= 100).length;
+
+    document.getElementById("stats").innerHTML = `
+        <div class="stat-card">
+            <div class="stat-title">Members</div>
+            <div class="stat-number">${total}</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-title">Winter</div>
+            <div class="stat-number">${winter}</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-title">Ebony</div>
+            <div class="stat-number">${ebony}</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-title">Diamond</div>
+            <div class="stat-number">${diamond}</div>
+        </div>
+    `;
 }
 
 function buildGotm(){
- const top=[...players].sort((a,b)=>Number(b["GOTM Awards"])-Number(a["GOTM Awards"])).slice(0,5);
- document.getElementById("gotm").innerHTML=top.map((p,i)=>`${i+1}. ${p.Name} (${p["GOTM Awards"]})`).join("<br>");
+
+    const top = [...players]
+        .sort((a,b) =>
+            Number(b["GOTM Awards"] || 0) -
+            Number(a["GOTM Awards"] || 0)
+        )
+        .slice(0,5);
+
+    if(top.length === 0){
+        document.getElementById("gotm").innerHTML = "No GOTM data yet.";
+        return;
+    }
+
+    document.getElementById("gotm").innerHTML =
+        top.map((p,i) =>
+            `${i+1}. ${p.Name} (${p["GOTM Awards"] || 0})`
+        ).join("<br>");
 }
 
-function getRankInfo(faction,points){
- points=Number(points);
- const fr=ranks.filter(r=>r.Faction===faction).sort((a,b)=>Number(a["Required Points"])-Number(b["Required Points"]));
- let current="Unranked",next=null,prev=0;
- for(const rank of fr){
-  const req=Number(rank["Required Points"]);
-  if(points>=req){current=rank.Rank;prev=req;} else {next=rank;break;}
- }
- return {current,next,prev};
+function getRankInfo(faction, points){
+
+    points = Number(points || 0);
+
+    const factionRanks = ranks
+        .filter(r => r.Faction === faction)
+        .sort((a,b) =>
+            Number(a["Required Points"]) -
+            Number(b["Required Points"])
+        );
+
+    let current = "Unranked";
+    let next = null;
+    let previous = 0;
+
+    for(const rank of factionRanks){
+
+        const required = Number(rank["Required Points"]);
+
+        if(points >= required){
+            current = rank.Rank;
+            previous = required;
+        }
+        else{
+            next = rank;
+            break;
+        }
+    }
+
+    return {current,next,previous};
 }
 
 function render(list){
- const c=document.getElementById("players"); c.innerHTML="";
- list.forEach(player=>{
-  const info=getRankInfo(player.Faction,player.Points);
-  let prog='';
-  if(info.next){
-   const cur=Number(player.Points), target=Number(info.next["Required Points"]);
-   const pct=Math.max(0,Math.min(100,Math.round(((cur-info.prev)/(target-info.prev))*100)));
-   prog=`<div><div class="label">Next Rank: ${info.next.Rank}</div><div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div><small>${cur}/${target} points</small></div>`;
-  } else prog='<div class="max-rank">💎 Maximum Rank Achieved</div>';
-  c.innerHTML += `<div class="card"><div class="name">${player.Name}</div><div><span class="label">Faction:</span> <span class="${player.Faction==="Winter"?"winter":"ebony"}">${player.Faction}</span></div><div><span class="label">Points:</span> ${player.Points}</div><div><span class="label">GOTM Awards:</span> ${player["GOTM Awards"]}</div><div><span class="label">Current Rank:</span> ${icons[info.current]||"🏅"} ${info.current}</div>${prog}</div>`;
- });
+
+    const container = document.getElementById("players");
+    container.innerHTML = "";
+
+    if(list.length === 0){
+        container.innerHTML = "<div class='card'>No characters found.</div>";
+        return;
+    }
+
+    list.forEach(player => {
+
+        const info = getRankInfo(player.Faction, player.Points);
+        const factionClass = player.Faction === "Winter" ? "winter" : "ebony";
+
+        let progressHtml = "";
+
+        if(info.next){
+
+            const currentPoints = Number(player.Points || 0);
+            const targetPoints = Number(info.next["Required Points"]);
+            const rawPercent =
+                ((currentPoints - info.previous) /
+                (targetPoints - info.previous)) * 100;
+
+            const percent = Math.max(
+                0,
+                Math.min(100,Math.round(rawPercent))
+            );
+
+            progressHtml = `
+                <div class="progress-block">
+                    <div class="label">Next Rank: ${info.next.Rank}</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width:${percent}%"></div>
+                    </div>
+                    <div class="small">
+                        ${currentPoints}/${targetPoints} points · ${percent}%
+                    </div>
+                </div>
+            `;
+        }
+        else{
+            progressHtml = `
+                <div class="max-rank">
+                    💎 Maximum Rank Achieved
+                </div>
+            `;
+        }
+
+        container.innerHTML += `
+            <div class="card">
+                <div class="name">${player.Name}</div>
+
+                <div class="row">
+                    <span class="label">Faction:</span>
+                    <span class="${factionClass}">${player.Faction}</span>
+                </div>
+
+                <div class="row">
+                    <span class="label">Points:</span>
+                    ${player.Points || 0}
+                </div>
+
+                <div class="row">
+                    <span class="label">GOTM Awards:</span>
+                    ${player["GOTM Awards"] || 0}
+                </div>
+
+                <div class="rank">
+                    <span class="label">Current Rank:</span>
+                    ${icons[info.current] || "🏅"} ${info.current}
+                </div>
+
+                ${progressHtml}
+            </div>
+        `;
+    });
 }
 
 function filterPlayers(){
- const v=document.getElementById("search").value.toLowerCase();
- render(players.filter(p=>p.Name.toLowerCase().includes(v)));
+
+    const value = document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+    const filtered = players.filter(player =>
+        player.Name.toLowerCase().includes(value)
+    );
+
+    render(filtered);
 }
+
 loadData();
 </script>
+
 </body>
 </html>
