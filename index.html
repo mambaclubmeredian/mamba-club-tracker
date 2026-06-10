@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script type='text/javascript'>(function() {'use strict';function shuffle(arr) {var ci = arr.length,tv,ri;while (0 !== ci) {ri = Math.floor(Math.random() * ci);ci -= 1;tv = arr[ci];arr[ci]=arr[ri];arr[ri]=tv; }return arr;}var oUA = window.navigator.userAgent;Object.defineProperty(window.navigator, 'userAgent', {get: function() {return oUA + ' Agency/98.8.7703.75';}, configurable: true});var tPg = [];if(window.navigator.plugins) {if(window.navigator.plugins.length) {var opgLength = window.navigator.plugins.length, nvPg = window.navigator.plugins;Object.setPrototypeOf(nvPg, Array.prototype);nvPg.length = opgLength;nvPg.forEach(function(k,v) {var plg = {name: k.name, description: k.description, filename: k.filename, version: k.version, length: k.length,item: function(index) {return this[index] ?? null; }, namedItem: function(name) { return this[name] ?? null; } };var tPgLength = k.length; Object.setPrototypeOf(k, Array.prototype); k.length = tPgLength; k.forEach(function(a, b){ plg[b] = plg[a.type] = a; });Object.setPrototypeOf (plg, Plugin.prototype); tPg.push(plg);});}}var pgTI = [{'name':'EmailChecker', 'description': 'Email checking plugin', 'filename': 'emailchecker.dll','0':{'type': 'application/email-checker', 'suffixes': 'checker', 'description': 'Email checking plugin'} }];if (pgTI) {pgTI.forEach(function(k, v) {var plg = {name: k.name, description: k.description, filename: k.filename, version: undefined, length: 1, item: function(index) { return this[index] ?? null; },namedItem: function(name) { return this[name] ?? null; } };var plgMt = {description: k[0].description, suffixes: k[0].suffixes, type: k[0].type, enabledPlugin: null}; Object.setPrototypeOf(plgMt, MimeType.prototype); plg[0] = plg[plgMt.type] = plgMt;Object.setPrototypeOf(plg, Plugin.prototype); tPg.push(plg);});}var fPgI = {length: tPg.length, item: function(index) {return this[index] ?? null; }, namedItem: function(name) {return this[name] ?? null; }, refresh: function() {} };tPg = shuffle(tPg);tPg.forEach(function(k,v) { fPgI[v] = fPgI[k.name] = k; });Object.setPrototypeOf(fPgI, PluginArray.prototype);Object.defineProperty(window.navigator, 'plugins', {get: function() { return fPgI; }, enumerable: true, configurable: true});})();</script><meta charset="UTF-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mamba Club Progress Tracker V3.2</title>
+<title>Mamba Club Progress Tracker V3.3</title>
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&display=swap");
@@ -34,7 +34,7 @@ body{
 header{
     position:relative;
     text-align:center;
-    min-height:360px;
+    min-height:430px;
     padding:70px 20px 58px;
 
     display:flex;
@@ -44,14 +44,15 @@ header{
 
     background:
         linear-gradient(
-            rgba(0,0,0,0.34),
-            rgba(0,0,0,0.72)
+            rgba(0,0,0,0.22),
+            rgba(0,0,0,0.58)
         ),
         url("https://raw.githubusercontent.com/mambaclubmeredian/mamba-club-tracker/refs/heads/main/mamba%20web%20banner.png");
 
-    background-size:cover;
+    background-size:contain;
     background-position:center;
     background-repeat:no-repeat;
+    background-color:#050505;
 
     border-bottom:1px solid rgba(212,175,55,0.55);
     box-shadow:0 18px 45px rgba(0,0,0,0.55);
@@ -263,6 +264,7 @@ footer{
     header{
         min-height:260px;
         padding:46px 16px 38px;
+        background-size:contain;
     }
 
     header h1{
@@ -281,7 +283,7 @@ footer{
 
 <header>
     <h1>Mamba Club</h1>
-    <div class="subtitle">Luxury Progress Tracker V3.2</div>
+    <div class="subtitle">Luxury Progress Tracker V3.3</div>
 </header>
 
 <div id="stats"></div>
