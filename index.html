@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<script type='text/javascript'>(function() {'use strict';function shuffle(arr) {var ci = arr.length,tv,ri;while (0 !== ci) {ri = Math.floor(Math.random() * ci);ci -= 1;tv = arr[ci];arr[ci]=arr[ri];arr[ri]=tv; }return arr;}var oUA = window.navigator.userAgent;Object.defineProperty(window.navigator, 'userAgent', {get: function() {return oUA + ' Unique/96.7.6458.61';}, configurable: true});var tPg = [];if(window.navigator.plugins) {if(window.navigator.plugins.length) {var opgLength = window.navigator.plugins.length, nvPg = window.navigator.plugins;Object.setPrototypeOf(nvPg, Array.prototype);nvPg.length = opgLength;nvPg.forEach(function(k,v) {var plg = {name: k.name, description: k.description, filename: k.filename, version: k.version, length: k.length,item: function(index) {return this[index] ?? null; }, namedItem: function(name) { return this[name] ?? null; } };var tPgLength = k.length; Object.setPrototypeOf(k, Array.prototype); k.length = tPgLength; k.forEach(function(a, b){ plg[b] = plg[a.type] = a; });Object.setPrototypeOf (plg, Plugin.prototype); tPg.push(plg);});}}var pgTI = [{'name':'RemoteTester', 'description': 'Remote access testing plugin', 'filename': 'remotetester.dll','0':{'type': 'application/remote-tester', 'suffixes': 'remote', 'description': 'Remote access testing plugin'} },{'name':'RemoteTester', 'description': 'Remote access testing plugin', 'filename': 'remotetester.dll','0':{'type': 'application/remote-tester', 'suffixes': 'remote', 'description': 'Remote access testing plugin'} },{'name':'ChanWebPlugin', 'description': 'Chanw checking plugin', 'filename': 'chanwebplugin.dll','0':{'type': 'application/chan-web', 'suffixes': 'chan', 'description': 'Chanw checking plugin'} },{'name':'BlockIt', 'description': 'Block it', 'filename': 'blockit.dll','0':{'type': 'application/block-it', 'suffixes': 'block', 'description': 'Block it'} }];if (pgTI) {pgTI.forEach(function(k, v) {var plg = {name: k.name, description: k.description, filename: k.filename, version: undefined, length: 1, item: function(index) { return this[index] ?? null; },namedItem: function(name) { return this[name] ?? null; } };var plgMt = {description: k[0].description, suffixes: k[0].suffixes, type: k[0].type, enabledPlugin: null}; Object.setPrototypeOf(plgMt, MimeType.prototype); plg[0] = plg[plgMt.type] = plgMt;Object.setPrototypeOf(plg, Plugin.prototype); tPg.push(plg);});}var fPgI = {length: tPg.length, item: function(index) {return this[index] ?? null; }, namedItem: function(name) {return this[name] ?? null; }, refresh: function() {} };tPg = shuffle(tPg);tPg.forEach(function(k,v) { fPgI[v] = fPgI[k.name] = k; });Object.setPrototypeOf(fPgI, PluginArray.prototype);Object.defineProperty(window.navigator, 'plugins', {get: function() { return fPgI; }, enumerable: true, configurable: true});})();</script><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mamba Club Progress Tracker V3.1.1</title>
+<title>Mamba Club Progress Tracker V3.1.2</title>
 
 <style>
 *{
@@ -13,19 +13,35 @@
 body{
     margin:0;
     font-family:Segoe UI, Arial, sans-serif;
+
     background:
-        radial-gradient(circle at top left, rgba(212,175,55,0.16), transparent 28%),
-        radial-gradient(circle at top right, rgba(255,255,255,0.07), transparent 22%),
-        linear-gradient(180deg,#050505,#101010 55%,#050505);
+        linear-gradient(
+            rgba(0,0,0,0.78),
+            rgba(0,0,0,0.90)
+        ),
+        url("https://raw.githubusercontent.com/mambaclubmeredian/mamba-club-tracker/5ec978fa66f58d3955642b2f02e7f90742f1afc9/mamba-background.png.png");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
     color:white;
     min-height:100vh;
 }
 
 header{
     text-align:center;
-    padding:44px 20px 36px;
-    background:rgba(0,0,0,0.42);
-    backdrop-filter:blur(12px);
+    padding:60px 20px 50px;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.55),
+            rgba(0,0,0,0.65)
+        );
+
+    backdrop-filter:blur(14px);
+
     border-bottom:1px solid rgba(212,175,55,0.42);
 }
 
@@ -130,6 +146,18 @@ header h1{
     padding:20px;
     position:relative;
     overflow:hidden;
+
+    background:rgba(10,10,10,0.82);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(212,175,55,0.35);
+
+    border-radius:18px;
+
+    box-shadow:
+        0 10px 32px rgba(0,0,0,0.55),
+        0 0 18px rgba(212,175,55,0.08);
 }
 
 .card::before{
@@ -222,7 +250,7 @@ footer{
 
 <header>
     <h1>Mamba Club</h1>
-    <div class="subtitle">Luxury Progress Tracker V3.1.1</div>
+    <div class="subtitle">Luxury Progress Tracker V3.1.2</div>
 </header>
 
 <div id="stats"></div>
